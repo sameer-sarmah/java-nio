@@ -27,7 +27,7 @@ public class WholeFileLocking implements Runnable {
 			if (lock == null) {
 				System.out.println("could not acquire lock for the whole file,in thread "+Thread.currentThread().getName());
 			} else {
-				System.out.println("lock acquired for the whole file"+Thread.currentThread().getName());
+				System.out.println("lock acquired for the whole file "+Thread.currentThread().getName());
 			}
 			Thread.sleep(3000);
 		} catch (FileNotFoundException e) {

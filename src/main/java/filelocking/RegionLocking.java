@@ -23,16 +23,28 @@ public class RegionLocking implements Runnable {
 	public void run() {
 		RandomAccessFile raf;
 		FileLock lock = null;
+		boolean isLockAcquired=false;
 		try {
 			System.out.println("trying acquire lock in region "+from+" to "+to+",in thread "+Thread.currentThread().getName());
 			raf = new RandomAccessFile(filePath, "rw");
 			FileChannel fileChannel = raf.getChannel();
-			lock = fileChannel.tryLock(from, to, true);
-			if (lock == null) {
-				System.out.println("could not acquire lock in region "+from+" to "+to+",in thread "+Thread.currentThread().getName());
-			} else {
-				System.out.println("lock acquired in region "+from+" to "+to+",in thread "+Thread.currentThread().getName());
+			while(!isLockAcquired) {
+			try {
+				lock = fileChannel.tryLock(from, to, true);
+				if (lock == null) {
+					System.out.println("could not acquire lock in region "+from+" to "+to+",in thread "+Thread.currentThread().getName());
+					Thread.sleep(1000);
+				} else {
+					System.out.println("lock acquired in region "+from+" to "+to+",in thread "+Thread.currentThread().getName());
+					isLockAcquired=true;
+				}
 			}
+			catch (OverlappingFileLockException e) {
+				System.out.println("could not acquire lock in region "+from+" to "+to+" as it is already acquired by another thread,in thread "+Thread.currentThread().getName());
+				Thread.sleep(1000);
+			}
+			}
+
 			Thread.sleep(3000);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -41,9 +53,7 @@ public class RegionLocking implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} 
-		catch (OverlappingFileLockException e) {
-			System.out.println("could not acquire lock in region "+from+" to "+to+" as it is already acquired by another thread,in thread "+Thread.currentThread().getName());
-		}finally {
+		finally {
 			if (lock != null) {
 				try {
 					lock.release();
