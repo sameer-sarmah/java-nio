@@ -12,8 +12,8 @@ public class BlockingConsumerProducerDriver {
 		try {
 			Pipe pipe= Pipe.open();
 			ExecutorService executor=Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-			executor.submit(new BlockingProducer(pipe));
 			executor.submit(new BlockingConsumer(pipe));
+			executor.submit(new BlockingProducer(pipe));
 			executor.shutdown();
 
 			executor.awaitTermination(1, TimeUnit.DAYS);
