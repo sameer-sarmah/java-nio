@@ -27,7 +27,7 @@ public class AsyncClient implements Callable<Product> {
 			ByteBuffer bufferForProduct = ByteBuffer.allocateDirect(500);
 			reqResObj.setBufferForProduct(bufferForProduct);
 			clientChannel.read(bufferForProduct, reqResObj, new ClientReadHandler());
-			clientChannel.close();
+			//clientChannel.close();
 		} catch (IOException ioe) {
 			System.err.println("I/O error: " + ioe.getMessage());
 		}
