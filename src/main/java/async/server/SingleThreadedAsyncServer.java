@@ -1,11 +1,8 @@
-package async;
+package async.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
-
-import async.server.AcceptHandler;
-import async.server.ServerReqResObject;
 
 public class SingleThreadedAsyncServer {
 
@@ -17,6 +14,7 @@ public class SingleThreadedAsyncServer {
 			serverSocketChannel.bind(new InetSocketAddress(8080));
 			ServerReqResObject reqRes=new ServerReqResObject();
 			reqRes.setChannelServer(serverSocketChannel);
+			//now ready to accept connection at 8080
 			serverSocketChannel.accept(reqRes, new AcceptHandler());
 			
 			Thread.sleep(100000);

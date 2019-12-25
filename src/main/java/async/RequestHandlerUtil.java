@@ -18,10 +18,12 @@ public class RequestHandlerUtil {
 	 public static void handleAcceptEvent(SelectionKey key,Map<SocketChannel,String> responseMap) throws IOException {
 		 
 		    ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
+		    //client which has connected with the server
 		    SocketChannel socketChannel = serverSocketChannel.accept(); 
 		    if(socketChannel != null) {
 		    System.out.println("Someone connected: " + socketChannel);
 		    socketChannel.configureBlocking(false);
+		    //now in listening mode
 		    socketChannel.register(key.selector(), SelectionKey.OP_READ);
 		    }
 	 }

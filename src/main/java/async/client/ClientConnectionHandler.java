@@ -1,7 +1,8 @@
 package async.client;
 
 import java.nio.channels.CompletionHandler;
-
+/* the completed method is called when client has established connection with the server
+ * */
 public class ClientConnectionHandler implements CompletionHandler<Void, Void>{
 
 	@Override
