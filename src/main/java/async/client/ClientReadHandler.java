@@ -1,4 +1,4 @@
-package async;
+package async.client;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.CompletionHandler;
@@ -9,7 +9,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.Product;
-
+/*the completed method is called when read is completed ,in this case every time a response is fetched from the server
+ * the first argument is the number of bytes read and the second is a custom object passed to help with the processing
+ * of the server response in this case
+ * 
+ * 1.once we receive the product json response we print the received products
+ * */
 public class ClientReadHandler implements CompletionHandler<Integer, ClientReqResObject>{
 	@Override
 	public void completed(Integer result, ClientReqResObject reqResObj) {

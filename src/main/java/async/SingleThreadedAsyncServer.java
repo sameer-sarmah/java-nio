@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.AsynchronousServerSocketChannel;
 
+import async.server.AcceptHandler;
+import async.server.ServerReqResObject;
+
 public class SingleThreadedAsyncServer {
 
 	public static void main(String[] args) {

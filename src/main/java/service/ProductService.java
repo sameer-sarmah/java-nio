@@ -1,4 +1,4 @@
-package async;
+package service;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,13 +23,7 @@ public class ProductService {
 	}
 	public static Product getProduct(int productID) {
 		Optional<Product> productRetrieved= products.stream()
-		.filter((product)->{
-			if(product.getProductId() == productID) {
-				return true;
-			}
-			else
-				return false;
-		})
+		.filter((product)->product.getProductId() == productID)
 		.findFirst();
 		return productRetrieved.get();
 	}

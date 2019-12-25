@@ -1,4 +1,4 @@
-package async;
+package async.client;
 
 import java.nio.channels.CompletionHandler;
 

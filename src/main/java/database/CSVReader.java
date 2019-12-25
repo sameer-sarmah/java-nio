@@ -21,12 +21,7 @@ public class CSVReader {
 			return new Product(productID,attributes.get(1),attributes.get(4),price);
 		};
 		
-		List<Product> products=lines.stream().filter((line)->{
-			if(line.contains("productID"))
-				return false;
-			else
-				return true;
-		})
+		List<Product> products=lines.stream().filter((line)-> !line.contains("productID"))
 		.map(linetoProduct)
 		.collect(Collectors.toList());
 		return products;

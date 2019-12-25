@@ -1,6 +1,8 @@
-package async;
+package async.client;
 
 import java.nio.ByteBuffer;
+
+import async.ReqResObject;
 
 public class ClientReqResObject extends ReqResObject{
 

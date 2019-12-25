@@ -10,11 +10,13 @@ import java.nio.charset.Charset;
 import model.Product;
 
 public class ProductDAO {
+	//column sizes
 	private final static int PRODUCT_ID = 10;
 	private final static int PRODUCT_NAME = 50;
 	private final static int QUAN_PER_UNIT = 50;
 	private final static int PRICE = 10;
 
+	//row size
 	private final static int ROW_LENGTH = PRODUCT_ID + PRODUCT_NAME + QUAN_PER_UNIT + PRICE;
 
 	private RandomAccessFile randomAccessFile;

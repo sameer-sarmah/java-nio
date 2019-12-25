@@ -1,8 +1,10 @@
-package async;
+package async.server;
 
 import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.AsynchronousSocketChannel;
+
+import async.ReqResObject;
 
 public class ServerReqResObject extends ReqResObject{
     private AsynchronousServerSocketChannel channelServer;

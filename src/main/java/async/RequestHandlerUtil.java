@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import model.Product;
+import service.ProductService;
 
 public class RequestHandlerUtil {
 	 public static void handleAcceptEvent(SelectionKey key,Map<SocketChannel,String> responseMap) throws IOException {
