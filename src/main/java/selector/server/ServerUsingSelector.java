@@ -2,12 +2,15 @@ package selector.server;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.channels.AsynchronousServerSocketChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.util.Iterator;
 import java.util.Set;
-
+/*Using AsynchronousServerSocketChannel is a better implementation than this approach as it is completely async 
+ *as AsynchronousServerSocketChannel uses CompletionHandler for all the operations(Read,Write,Accept)
+ */
 public class ServerUsingSelector {
 
     public static void main(String[] args) throws IOException {
